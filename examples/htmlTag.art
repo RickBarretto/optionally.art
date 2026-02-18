@@ -1,0 +1,20 @@
+import {src/lib}!
+
+debug: $[expression][
+    prints express expression
+    prints " ; => "
+    print expression
+]
+
+tag: $[name :string content :any] optionally [closed? :logical][
+    join @[
+        ~"<|name|/>"
+        content
+        if closed? -> ~"</|name|>"
+    ]
+]
+
+debug -> tag "input" ""
+debug -> tag.closed?: false "input" ""
+debug -> tag.closed "article" "Lorem Ipsum..."
+debug -> tag.closed?: true "article" "Lorem Ipsum..."
