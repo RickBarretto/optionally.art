@@ -23,7 +23,7 @@
     &nbsp;
     <a href="https://github.com/RickBarretto/optionally/blob/main/LICENSE"><img src="https://img.shields.io/github/license/RickBarretto/optionally?style=flat&colorA=000000&colorB=000000" alt="License"/></a>
     &nbsp;
-    <a href="https://github.com/RickBarretto/optionally/actions"><img src="https://img.shields.io/github/actions/workflow/status/RickBarretto/optionally/test.yml?branch=main?style=flat&colorA=000000&colorB=000000" alt="CI Status"/></a>
+    <a href="https://github.com/RickBarretto/optionally/actions"><img src="https://img.shields.io/github/actions/workflow/status/RickBarretto/optionally/test.yml?branch=main&style=flat&colorA=000000&colorB=000000" alt="CI Status"/></a>
 </p>
 
 ## At a Glance
