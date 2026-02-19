@@ -1,0 +1,35 @@
+import {src/lib}!
+
+clone: $[remote :string] optionally [
+    help? :logical
+    origin :string
+    jobs :integer
+][
+    ;; Git-like clone command
+
+    #[
+        remote: remote
+        help?: help?
+        origin: origin
+        jobs: jobs
+    ]
+]
+
+if standalone? ::
+
+    print clone "https://github.com/RickBarretto/optionally.art"
+    
+    print clone.help "https://github.com/RickBarretto/optionally.art"
+    print clone.help? "https://github.com/RickBarretto/optionally.art"
+
+    print clone.help?: true "https://github.com/RickBarretto/optionally.art"
+    print clone.help?: false "https://github.com/RickBarretto/optionally.art"
+
+    print clone.help: true "https://github.com/RickBarretto/optionally.art"
+    print clone.help: false "https://github.com/RickBarretto/optionally.art"
+
+    print clone.origin: "upstream" "https://github.com/RickBarretto/optionally.art"
+    print clone.jobs: 4 "https://github.com/RickBarretto/optionally.art"
+    print clone.jobs: 4 .origin: "upstream" "https://github.com/RickBarretto/optionally.art"
+
+
