@@ -89,6 +89,5 @@ describe "Git Clone Command" [
             expects.be: 'equal? @[4 result\jobs]
         ]
     ]
-
 ]
 
