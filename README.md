@@ -234,7 +234,9 @@ clone.jobs: 4 .origin: "upstream" "https://github.com/RickBarretto/optionally.ar
 
 ### How It Works
 
-`optionally` is a **compile-time metaprogramming** function. It does not wrap your function — it generates a preamble block that is prepended to your function body. For each declared optional:
+`optionally` is a **runtime-time metaprogramming** function. It attaches to your actual function body by prepending its generated boilerplate to it. 
+
+For each declared optional:
 
 1. **Attribute injection** — emits `let <name> attr <name>` to read the attribute value into a local variable.
 2. **Predicate expansion** — for parameters ending in `?`, also generates the affirmation form (without `?`) and combines them with `any?` so either spelling activates the flag.
