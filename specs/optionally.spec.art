@@ -1,0 +1,73 @@
+import {unitt}!
+import {src/lib.art}!
+
+person: $[name :string] optionally [age :integer][
+    return #[
+        name: name
+        age: age ?? "Not provided"
+    ]
+]
+
+user1: $[email :string] optionally [admin? :logical][
+    return #[
+        email: email
+        admin?: admin? ?? false
+    ]
+]
+
+user2: $[email :string] optionally [admin :logical][
+    return #[
+        email: email
+        admin?: admin ?? false
+    ]
+]
+
+describe "Common optionals handling" [
+
+    it "should return a person with an age when age is provided" [
+        rick: person.age: 30 "Rick"
+        expects.be: 'equal? ["Rick" rick\name]
+        expects.be: 'equal? [30 rick\age]
+    ]
+
+    it "should return a person with 'Not provided' when age is not provided" [
+        rick: person "Rick"
+        expects.be: 'equal? ["Rick" rick\name]
+        expects.be: 'equal? ["Not provided" rick\age]
+    ]
+
+]
+
+describe "Predicate optionals handling" [
+
+    it "should handle predicates correctly" [
+        u1: user1.admin "test@example.com"
+        u2: user2.admin "test@example.com"
+        expects @[u1\admin?]
+        expects @[u2\admin?]
+    ]
+
+    it "predicate is not created from non-predicate options" [
+        u1: user1.admin? "test@example.com"
+        u2: user2.admin? "test@example.com"
+
+        expects @[u1\admin?]
+        expects.be: 'false? @[u2\admin?]
+    ]
+
+    it "should handle true when admin is passed without value" [
+        u1: user1.admin "test@example.com"
+        u2: user2.admin "test@example.com"
+
+        expects @[u1\admin?]
+        expects @[u2\admin?]
+    ]
+
+    it "should handle false when admin? is passed with false value" [
+        u1: user1.admin?: false "test@example.com"
+        u2: user2.admin?: false "test@example.com"
+
+        expects.be: 'false? @[u1\admin?]
+        expects.be: 'false? @[u2\admin?]
+    ]
+]
