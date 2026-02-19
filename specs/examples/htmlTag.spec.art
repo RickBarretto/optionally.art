@@ -1,0 +1,54 @@
+import {unitt}!
+import {src/lib}!
+
+tag: $[name :string content :any] optionally [closed? :logical][
+    join @[
+        ~"<|name|/>"
+        content
+        if closed? -> ~"</|name|>"
+    ]
+]
+
+describe "HTML Tag Command" [
+
+    describe "No optionals (self-closing)" [
+
+        it "should render a self-closing tag with no content" [
+            result: tag "input" ""
+            expects.be: 'equal? ["<input/>" result]
+        ]
+    ]
+
+    describe "Predicate optionals (closed?)" [
+
+        it "should render a self-closing tag when .closed?: false" [
+            result: tag.closed?: false "input" ""
+            expects.be: 'equal? ["<input/>" result]
+        ]
+
+        it "should render a closed tag when .closed is used" [
+            result: tag.closed "article" "Lorem Ipsum..."
+            expects.be: 'equal? ["<article/>Lorem Ipsum...</article>" result]
+        ]
+
+        it "should render a closed tag when .closed?: true" [
+            result: tag.closed?: true "article" "Lorem Ipsum..."
+            expects.be: 'equal? ["<article/>Lorem Ipsum...</article>" result]
+        ]
+
+        it "should render a closed tag when .closed? is used" [
+            result: tag.closed? "article" "Lorem Ipsum..."
+            expects.be: 'equal? ["<article/>Lorem Ipsum...</article>" result]
+        ]
+
+        it "should render a closed tag when .closed: true" [
+            result: tag.closed: true "article" "Lorem Ipsum..."
+            expects.be: 'equal? ["<article/>Lorem Ipsum...</article>" result]
+        ]
+
+        it "should render a self-closing tag when .closed: false" [
+            result: tag.closed: false "input" ""
+            expects.be: 'equal? ["<input/>" result]
+        ]
+    ]
+]
