@@ -17,19 +17,34 @@ clone: $[remote :string] optionally [
 
 if standalone? ::
 
+
     print clone "https://github.com/RickBarretto/optionally.art"
-    
+    ; [remote:https://github.com/RickBarretto/optionally.art help?:false origin:null jobs:null]
+
+
     print clone.help "https://github.com/RickBarretto/optionally.art"
+    ; [remote:https://github.com/RickBarretto/optionally.art help?:true origin:null jobs:null]
     print clone.help? "https://github.com/RickBarretto/optionally.art"
+    ; [remote:https://github.com/RickBarretto/optionally.art help?:true origin:null jobs:null]
+
 
     print clone.help?: true "https://github.com/RickBarretto/optionally.art"
+    ; [remote:https://github.com/RickBarretto/optionally.art help?:true origin:null jobs:null]
     print clone.help?: false "https://github.com/RickBarretto/optionally.art"
+    ; [remote:https://github.com/RickBarretto/optionally.art help?:false origin:null jobs:null]
+
 
     print clone.help: true "https://github.com/RickBarretto/optionally.art"
+    ; [remote:https://github.com/RickBarretto/optionally.art help?:true origin:null jobs:null]
     print clone.help: false "https://github.com/RickBarretto/optionally.art"
+    ; [remote:https://github.com/RickBarretto/optionally.art help?:false origin:null jobs:null]
+
 
     print clone.origin: "upstream" "https://github.com/RickBarretto/optionally.art"
+    ; [remote:https://github.com/RickBarretto/optionally.art help?:false origin:upstream jobs:null]
     print clone.jobs: 4 "https://github.com/RickBarretto/optionally.art"
+    ; [remote:https://github.com/RickBarretto/optionally.art help?:false origin:null jobs:4]
     print clone.jobs: 4 .origin: "upstream" "https://github.com/RickBarretto/optionally.art"
+    ; [remote:https://github.com/RickBarretto/optionally.art help?:false origin:upstream jobs:4]
 
 
