@@ -83,8 +83,6 @@ optionally [params :block body :block] => :block
 myFunc: $[<required params>] optionally [<optional params>] [<body>]
 ```
 
----
-
 ### Parameter Kinds
 
 #### Typed Optionals
@@ -119,7 +117,6 @@ fetch.verbose: true "https://example.com"  ; verbose? = true
 
 > **Note:** The affirmation shorthand (`.verbose`) is only generated when the parameter name ends with `?`. A parameter named `admin` (without `?`) will **not** generate `admin?`.
 
----
 
 ### Calling Conventions
 
@@ -142,7 +139,6 @@ Multiple optionals can be chained:
 clone.jobs: 4 .origin: "upstream" "https://github.com/RickBarretto/optionally.art"
 ```
 
----
 
 ### Defaults
 
@@ -165,7 +161,6 @@ person "Rick"           ; age => "Not provided"
 person.age: 30 "Rick"   ; age => 30
 ```
 
----
 
 ### Type Safety
 
@@ -178,7 +173,6 @@ clone.jobs: 4 "repo"    ; OK — :integer
 clone.jobs: "x" "repo"  ; ERROR — expected :integer or :null
 ```
 
----
 
 ### Full Examples
 
@@ -237,7 +231,6 @@ clone.jobs: 4 .origin: "upstream" "https://github.com/RickBarretto/optionally.ar
 ; [remote:https://github.com/RickBarretto/optionally.art help?:false origin:upstream jobs:4]
 ```
 
----
 
 ### How It Works
 
@@ -249,7 +242,6 @@ clone.jobs: 4 .origin: "upstream" "https://github.com/RickBarretto/optionally.ar
 
 The result is a flat block (`preBody ++ body`) that Arturo executes as a normal function body — no closures, no overhead.
 
----
 
 ### Requirements
 
