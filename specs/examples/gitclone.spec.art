@@ -1,0 +1,94 @@
+import {unitt}!
+import {src/lib}!
+
+clone: $[remote :string] optionally [
+    help? :logical
+    origin :string
+    jobs :integer
+][
+    ;; Git-like clone command
+
+    #[
+        remote: remote
+        help?: help?
+        origin: origin
+        jobs: jobs
+    ]
+]
+
+describe "Git Clone Command" [
+
+    describe "No optionals" [
+
+        it "should set remote and default all optionals" [
+            result: clone "https://github.com/RickBarretto/optionally.art"
+            expects.be: 'equal? @["https://github.com/RickBarretto/optionally.art" result\remote]
+            expects.be: 'false? @[result\help?]
+            expects.be: 'null? @[result\origin]
+            expects.be: 'null? @[result\jobs]
+        ]
+    ]
+
+    describe "Predicate optionals (help?)" [
+
+        it "should set help? to true when .help is used" [
+            result: clone.help "https://github.com/RickBarretto/optionally.art"
+            expects @[result\help?]
+        ]
+
+        it "should set help? to true when .help? is used" [
+            result: clone.help? "https://github.com/RickBarretto/optionally.art"
+            expects @[result\help?]
+        ]
+
+        it "should set help? to true when .help?: true" [
+            result: clone.help?: true "https://github.com/RickBarretto/optionally.art"
+            expects @[result\help?]
+        ]
+
+        it "should set help? to false when .help?: false" [
+            result: clone.help?: false "https://github.com/RickBarretto/optionally.art"
+            expects.be: 'false? @[result\help?]
+        ]
+
+        it "should set help? to true when .help: true" [
+            result: clone.help: true "https://github.com/RickBarretto/optionally.art"
+            expects @[result\help?]
+        ]
+
+        it "should set help? to false when .help: false" [
+            result: clone.help: false "https://github.com/RickBarretto/optionally.art"
+            expects.be: 'false? @[result\help?]
+        ]
+    ]
+
+    describe "Typed optionals (origin, jobs)" [
+
+        it "should set origin when .origin: is provided" [
+            result: clone.origin: "upstream" "https://github.com/RickBarretto/optionally.art"
+            expects.be: 'equal? ["upstream" result\origin]
+            expects.be: 'false? @[result\help?]
+            expects.be: 'null? @[result\jobs]
+        ]
+
+        it "should set jobs when .jobs: is provided" [
+            result: clone.jobs: 4 "https://github.com/RickBarretto/optionally.art"
+            expects.be: 'equal? @[4 result\jobs]
+            expects.be: 'false? @[result\help?]
+            expects.be: 'null? @[result\origin]
+        ]
+    ]
+
+    describe "Multiple optionals combined" [
+
+        it "should set both jobs and origin when both are provided" [
+            result: clone.jobs: 4 .origin: "upstream" "https://github.com/RickBarretto/optionally.art"
+            expects.be: 'equal? @["https://github.com/RickBarretto/optionally.art" result\remote]
+            expects.be: 'false? @[result\help?]
+            expects.be: 'equal? @["upstream" result\origin]
+            expects.be: 'equal? @[4 result\jobs]
+        ]
+    ]
+
+]
+
