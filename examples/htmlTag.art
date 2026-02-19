@@ -11,6 +11,10 @@ tag: $[name :string content :any] optionally [closed? :logical][
 if standalone? ::
 
     print tag "input" ""
+    ; => <input/>
     print tag.closed?: false "input" ""
+    ; => <input/>
     print tag.closed "article" "Lorem Ipsum..."
+    ; => <article/>Lorem Ipsum...</article>
     print tag.closed?: true "article" "Lorem Ipsum..."
+    ; => <article/>Lorem Ipsum...</article>
