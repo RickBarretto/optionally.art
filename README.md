@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-    <a href="https://www.arturo-lang.org">
+    <a href="https://www.arturo-lang.io">
         <img src="https://img.shields.io/badge/language-Arturo-6A156B.svg?style=flat&labelColor=000000&color=000000" alt="Language: Arturo"/>
     </a>
     &nbsp;
